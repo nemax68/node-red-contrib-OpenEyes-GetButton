@@ -3,3 +3,4 @@ images
 npm-debug.log
 node_modules
 .git
+.gitattributes

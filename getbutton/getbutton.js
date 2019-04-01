@@ -44,7 +44,7 @@ module.exports = function (RED) {
 			var readbuf = new Buffer(posixmq.msgsize);
 			var n;
 
-			node.warn("message IN queue" + posixmq.msgsize);
+			//node.warn("message IN queue" + posixmq.msgsize);
 
 			while ((n = posixmq.shift(readbuf)) !== false){
 				str = readbuf.toString('utf8', 0, n);

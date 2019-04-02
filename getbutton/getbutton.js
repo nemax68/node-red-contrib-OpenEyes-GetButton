@@ -37,7 +37,7 @@ module.exports = function (RED) {
 		//posixmq.open({ name: node.msgname.toString(),create: true,mode: '0777',maxmsgs: node.maxmsgs, msgsize: node.msgsize });
 		posixmq.open({ name: PosixMQ_name,create: true,mode: '0777',maxmsgs: 10, msgsize: 256 });
 		node.status({fill: "green", shape: "dot", text: node.msgname.toString()});
-		node.warn("the " + node.msgname.toString() + " message queue is open");
+		//node.warn("the " + node.msgname.toString() + " message queue is open");
 
 		posixmq.on('messages', function() {
 			var str = "";

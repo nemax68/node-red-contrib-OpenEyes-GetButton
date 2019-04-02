@@ -3,7 +3,7 @@
     "posix-mq": "1.1.2"
   },
   "name"         : "openeyes-getbutton",
-  "version"      : "0.0.2",
+  "version"      : "0.0.3",
   "description"  : "Get button event from open-eyes LCD",
   "repository" : {
     "type": "git",

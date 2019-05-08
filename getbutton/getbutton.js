@@ -23,8 +23,6 @@ module.exports = function (RED) {
 	function GuiGetButton(config) {
 		RED.nodes.createNode(this,config);
 		this.msgname = config.msgname;
-		this.msgsize = Number(config.msgsize);
-		this.maxmsgs = Number(config.maxmsgs);
 		var posixmq = new PosixMQ();
 		var node = this;
 		var msg;
@@ -32,12 +30,19 @@ module.exports = function (RED) {
 		var send = false;
 		var PosixMQ_name = "/gui_event";
 		var PosixMQ_maxmsg = 10;
+        var PosixMQ_msgsize = 256;
 
+        node.status({fill: "red", shape: "dot", text: PosixMQ_name});
 
-		//posixmq.open({ name: node.msgname.toString(),create: true,mode: '0777',maxmsgs: node.maxmsgs, msgsize: node.msgsize });
-		posixmq.open({ name: PosixMQ_name,create: true,mode: '0777',maxmsgs: 10, msgsize: 256 });
-		node.status({fill: "green", shape: "dot", text: node.msgname.toString()});
-		//node.warn("the " + node.msgname.toString() + " message queue is open");
+        try{
+		    posixmq.open({ name: PosixMQ_name, create: true, mode: '0777', maxmsgs: PosixMQ_maxmsg, msgsize: PosixMQ_msgsize });
+            node.status({fill: "green", shape: "dot", text: PosixMQ_name});
+        }
+        catch(err){
+            node.status({fill: "red", shape: "dot", text: PosixMQ_name});
+            console.log(err);
+        }
+        //node.warn("the " + node.msgname.toString() + " message queue is open");
 
 		posixmq.on('messages', function() {
 			var str = "";

@@ -1,17 +1,21 @@
 {
   "dependencies": {
-    "posix-mq": "1.1.2"
+    "posix-mq": "^1.1.2"
   },
-  "name"         : "openeyes-getbutton",
-  "version"      : "0.0.3",
-  "description"  : "Get button event from open-eyes LCD",
-  "repository" : {
+  "name": "openeyes-getbutton",
+  "version": "0.0.4",
+  "description": "Get button event from open-eyes LCD",
+  "repository": {
     "type": "git",
     "url": "https://github.com/nemax68/node-red-contrib-OpenEyes-GetButton"
   },
   "license": "GPL-3.0",
-  "keywords": [ "node-red", "Open-Eyes", "get-button" ],
-  "node-red"     : {
+  "keywords": [
+    "node-red",
+    "Open-Eyes",
+    "get-button"
+  ],
+  "node-red": {
     "nodes": {
       "get-button": "getbutton/getbutton.js"
     }

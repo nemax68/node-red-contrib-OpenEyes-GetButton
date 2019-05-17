@@ -25,8 +25,6 @@ module.exports = function (RED) {
 		this.msgname = config.msgname;
 		var posixmq = new PosixMQ();
 		var node = this;
-		var msg;
-		var n;
 		var send = false;
 		var PosixMQ_name = "/gui_event";
 		var PosixMQ_maxmsg = 10;
@@ -53,7 +51,15 @@ module.exports = function (RED) {
 
 			while ((n = posixmq.shift(readbuf)) !== false){
 				str = readbuf.toString('utf8', 0, n);
-				node.send({payload: str});
+                try {
+                    var msg = JSON.parse(str);
+                    node.send({payload: msg});
+                }
+                catch(err){
+                    node.status({fill: "red", shape: "dot", text: PosixMQ_name});
+                    console.log(err);
+                }
+
 			}
 		});
 

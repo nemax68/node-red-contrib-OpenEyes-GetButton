@@ -22,7 +22,7 @@ module.exports = function (RED) {
 
 	function GuiGetButton(config) {
 		RED.nodes.createNode(this,config);
-		this.msgname = config.msgname;
+		//this.msgname = config.msgname;
 		var posixmq = new PosixMQ();
 		var node = this;
 		var send = false;
@@ -66,7 +66,7 @@ module.exports = function (RED) {
 		node.on('close', function() {
 			posixmq.unlink();
 			posixmq.close();
-			node.status({fill: "red", shape: "dot", text: node.msgname.toString()});
+			node.status({fill: "red", shape: "dot", text: PosixMQ_name});
 		});
 	}
 
